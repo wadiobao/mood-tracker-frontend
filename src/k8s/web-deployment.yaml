@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moodtracker-frontend
+  labels:
+    app: moodtracker-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: moodtracker-frontend
+  template:
+    metadata:
+      labels:
+        app: moodtracker-frontend
+    spec:
+      imagePullSecrets:
+      - name: acr-secret
+      containers:
+      - name: moodtracker-frontend
+        image: moodtracker-g7d7ayewgufsaghu.azurecr.io/moodtracker-front:v1.0
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
