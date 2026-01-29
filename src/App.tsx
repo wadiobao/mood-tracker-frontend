@@ -10,7 +10,7 @@ interface MoodEntry {
   timestamp: string;
 }
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+const API_URL = (window as any).env?.API_URL || import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 const MOODS = [
   { icon: Heart, label: 'Love', color: '#f472b6' },

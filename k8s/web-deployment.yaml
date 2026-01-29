@@ -18,7 +18,11 @@ spec:
       - name: acr-secret
       containers:
       - name: moodtracker-frontend
-        image: moodtracker-g7d7ayewgufsaghu.azurecr.io/moodtracker-front:v1.0
+        image: moodtracker-g7d7ayewgufsaghu.azurecr.io/moodtracker-front:v1.2
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config.js
+          subPath: config.js
         ports:
         - containerPort: 80
         resources:
@@ -40,3 +44,7 @@ spec:
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 10
+      volumes:
+      - name: config-volume
+        configMap:
+          name: web-config
