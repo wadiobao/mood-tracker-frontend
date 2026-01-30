@@ -18,7 +18,7 @@ spec:
       - name: acr-secret
       containers:
       - name: moodtracker-frontend
-        image: moodtracker-g7d7ayewgufsaghu.azurecr.io/moodtracker-front:v1.2
+        image: moodtracker-g7d7ayewgufsaghu.azurecr.io/moodtracker-front:v1.3-auth
         volumeMounts:
         - name: config-volume
           mountPath: /app/config.js
