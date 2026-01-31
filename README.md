@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# MoodTracker Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, premium React application for tracking daily moods. This frontend features a "Wow-factor" design with dark mode aesthetics, secure authentication, and full bilingual support (English/Vietnamese).
 
-Currently, two official plugins are available:
+## ✨ Features
+- **Premium UI:** Powered by Lucide React and custom CSS for a sleek, responsive experience.
+- **Secure Auth:** Integrated login and registration system with JWT session management.
+- **Mood Tracking:** Beautiful icon-based mood selector with history view and timestamps.
+- **Bilingual:** Real-time language switching between English and Vietnamese.
+- **Refactored Architecture:** Clean, modular folder structure (Feature-sliced design principles).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Tech Stack
+- **Framework:** React 18 + TypeScript
+- **Build Tool:** Vite
+- **icons:** Lucide React
+- **HTTP Client:** Axios
+- **Hosting:** Docker (Optimized for static serving)
 
-## React Compiler
+## 📂 Project Structure
+Organized for scalability and clarity:
+- `src/features/`: Feature-sliced logic (Auth, Moods, i18n/Translations).
+- `src/hooks/`: Custom hooks for accessing Auth and Language state (`useAuth`, `useLanguage`).
+- `src/components/`: Shared UI components and layout wrappers (Header, etc.).
+- `src/assets/`: Global styles and static assets.
+- `src/pages/`: Main application views (HomePage, etc.).
+- `src/config/`: Centralized API configuration and constants.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🏁 Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
+- Node.js (v20+)
+- npm
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Environment Setup
+Create a `.env` file pointing to your backend API:
+```bash
+cp .env.example .env
 ```
+Ensure `VITE_API_URL` is correctly set.
+
+### Development
+```bash
+npm run dev
+```
+
+### Build
+```bash
+npm run build
+```
+
+## ⚓ Deployment (Kubernetes)
+Manifests are located in the `k8s/` folder:
+- `web-deployment.yaml`: Optimized deployment for the static frontend.
+- `web-service.yaml`: Internal service exposure.
+
+The application is served via a lightweight container and ideally routed through the Backend's Ingress for professional SSL/HTTPS termination.
+
+---
+Part of the **MindX Engineer Onboarding** program.
