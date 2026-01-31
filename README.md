@@ -54,9 +54,9 @@ npm run build
 ```
 
 ## ⚓ Deployment (Kubernetes)
-Manifests are located in the `k8s/` folder:
-- `web-deployment.yaml`: Optimized deployment for the static frontend.
-- `web-service.yaml`: Internal service exposure.
+Manifest templates are located in the `k8s-example/` folder, while active manifests in `k8s/` are ignored by Git:
+- `k8s-example/web-deployment.example.yaml`: Optimized deployment template.
+- `k8s-example/web-service.example.yaml`: Internal service exposure template.
 
 The application is served via a lightweight container and ideally routed through the Backend's Ingress for professional SSL/HTTPS termination.
 
