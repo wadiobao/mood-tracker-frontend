@@ -4,6 +4,7 @@ import { LogIn, UserPlus, Languages } from 'lucide-react';
 import { useAuth } from '../../../hooks/useAuth';
 import { useLanguage } from '../../../hooks/useLanguage';
 import { API_URL } from '../../../config/constants';
+import ReactGA from 'react-ga4';
 
 export const AuthForm: React.FC = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -22,8 +23,18 @@ export const AuthForm: React.FC = () => {
             if (isLogin) {
                 const response = await axios.post(`${API_URL}/auth/login`, { username, password });
                 login(response.data.token, username);
+                ReactGA.event({
+                    category: "User",
+                    action: "Login",
+                    label: username
+                });
             } else {
                 await axios.post(`${API_URL}/auth/register`, { username, password });
+                ReactGA.event({
+                    category: "User",
+                    action: "Register",
+                    label: username
+                });
                 setIsLogin(true);
                 setError(t.registeredSuccess);
             }
