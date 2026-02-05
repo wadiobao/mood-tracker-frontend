@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-config
+data:
+  config.js: |
+    window.env = window.env || {};
+    window.env.API_URL = 'https://your-api-domain.com/api';
+    window.env.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+  VITE_API_URL: "https://your-api-domain.com/api"
