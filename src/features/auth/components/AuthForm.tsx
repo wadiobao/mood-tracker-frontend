@@ -5,6 +5,7 @@ import { useAuth } from '../../../hooks/useAuth';
 import { useLanguage } from '../../../hooks/useLanguage';
 import { API_URL } from '../../../config/constants';
 import ReactGA from 'react-ga4';
+import { Helmet } from 'react-helmet-async';
 
 export const AuthForm: React.FC = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -47,6 +48,9 @@ export const AuthForm: React.FC = () => {
 
     return (
         <div className="auth-container">
+            <Helmet>
+                <title>{isLogin ? 'Login' : 'Register'} | MoodTracker</title>
+            </Helmet>
             <div className="language-selector-floating">
                 <button onClick={() => setLanguage(language === 'en' ? 'vi' : 'en')} className="lang-btn">
                     <Languages size={20} />

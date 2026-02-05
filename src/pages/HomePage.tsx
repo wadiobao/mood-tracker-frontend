@@ -7,6 +7,7 @@ import { useAuth } from '../hooks/useAuth';
 import type { MoodEntry } from '../types';
 import { API_URL } from '../config/constants';
 import ReactGA from 'react-ga4';
+import { Helmet } from 'react-helmet-async';
 
 export const HomePage: React.FC = () => {
     const [moods, setMoods] = useState<MoodEntry[]>([]);
@@ -56,6 +57,9 @@ export const HomePage: React.FC = () => {
 
     return (
         <div className="container">
+            <Helmet>
+                <title>Dashboard | MoodTracker</title>
+            </Helmet>
             <Header />
             <main>
                 <MoodLogger
